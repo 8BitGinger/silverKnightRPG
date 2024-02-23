@@ -54,8 +54,42 @@ function playGame() {
     });
 }
 
+function continueFight() {
+  inquirer
+    .prompt({
+      name: 'action',
+      type: 'list',
+      message: 'What would you like to do?',
+      choices: ['Fight', 'Run', 'Exit'],
+    })
+    .then((answer) => {
+      if (answer.action === 'Fight') {
+        fight();
+      } else if (answer.action === 'Run') {
+        console.log('The Werewolf is too fast for you.  You are dead.');
+        exitScreen();
+      } else {
+        exitScreen();
+      }
+    });
+}
+
 function fight() {
-  console.log(`You draw your sword and prepare to fight.`);
+  const options = ['Hit', 'Miss', 'Kill'];
+  const randomOption = Math.floor(Math.random() * options.length);
+
+  if (options[randomOption] === 'Hit') {
+    console.log('You hit the Werewolf.  He is wounded.');
+    continueFight();
+  } else {
+    if (options[randomOption] === 'Miss') {
+      console.log('You missed.  The Werewolf is unharmed.');
+      continueFight();
+    } else {
+      console.log('You killed the Werewolf.  The village is safe.');
+      exitScreen();
+    }
+  }
 }
 
 function exitScreen() {
