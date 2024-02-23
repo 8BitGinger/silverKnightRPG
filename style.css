@@ -201,6 +201,15 @@ main {
   color: yellow;
 }
 
+.container-bottom {
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  width: 100%;
+  margin-top: 20px;
+  opacity: 0.8;
+}
+
 @media screen and (max-width: 600px) {
   .container-left,
   .container-right {
