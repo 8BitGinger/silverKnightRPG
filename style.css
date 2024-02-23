@@ -233,10 +233,6 @@ main {
     flex-direction: column;
   }
 
-  .header {
-    font-size: 25px;
-  }
-
   .container-bottom {
     font-size: 10px;
   }
