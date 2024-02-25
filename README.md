@@ -41,10 +41,11 @@ code
 
 ## Technologies and Dependencies
 
-| Tech     | Purpose    |
-| -------- | ---------- |
-| Node.js  | JS Runtime |
-| Inquirer | Prompts    |
+| Tech              | Purpose    |
+| ----------------- | ---------- |
+| Node.js           | JS Runtime |
+| Inquirer          | Prompts    |
+| node-localstorage | Storage    |
 
 ---
 
@@ -76,7 +77,7 @@ This is the link for the werewolf: [emojicombos.com](https://emojicombos.com/)we
 
 This is the link for the sound effect: [pixabay](https://pixabay.com/)
 
-This is the link for the Knight and Werewolf photos: [pngtree](https://pngtree.com)
+This is the link for the 4 Action Box photos as well as knight and werewolf lord photos: [gencraft](https://gencraft.com/)
 
 ---
 
