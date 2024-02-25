@@ -6,6 +6,7 @@ global.localStorage = new LocalStorage('./scratch');
 global.localStorage.setItem('agree', false);
 global.localStorage.setItem('inventory', []);
 global.localStorage.setItem('wolf', false);
+let hits = 0;
 
 function startGame() {
   inquirer
@@ -116,7 +117,7 @@ function fight() {
         console.log('The Werewolf bit you.  You are now a werewolf!.');
         killScreen();
       } else {
-        console.log('You killed the Werewolf.  The village is safe.');
+        console.log('You killed the Werewolf.  But he is not the Wolf-Lord.');
         continueExplore();
       }
     }
@@ -204,6 +205,7 @@ function helpWolf() {
           console.log(
             'The wolf is upset and turns you into a werewolf.  You have a limited time before the ugres are beyond your control.  You must defeat the Wolf-Lord before the transformation is complete.  You must hurry!'
           );
+          global.localStorage.setItem('wolf', true);
           burnPieces();
         } else {
           if (answer.action === 'No') {
@@ -236,7 +238,187 @@ function burnPieces() {
 }
 
 function travelCrux() {
-  console.log('You arrive at the Wolf-Lord Crux Moonscar.');
+  console.log(
+    'You arrive at the cave of forgotten curses.  You must get inside that cave!'
+  );
+  inquirer
+    .prompt({
+      name: 'action',
+      type: 'list',
+      message: 'How do you want to get inside the cave?',
+      choices: ['Cave Entrance', 'Climb', 'Exit'],
+    })
+    .then((answer) => {
+      if (answer.action === 'Cave Entrance') {
+        console.log('You enter the cave.');
+        enterCave();
+      } else if (answer.action === 'Climb') {
+        console.log('You climb the cave.');
+        climbCave();
+      } else {
+        exitScreen();
+      }
+    });
+}
+
+function enterCave() {
+  console.log(
+    'You enter the cave and see the Wolf-Lord Crux Moonscar.  A strange energy emits from his hand. He is summoning more werewolves.  You must fight him!'
+  );
+  inquirer
+    .prompt({
+      name: 'action',
+      type: 'list',
+      message: 'What do you want to do?',
+      choices: ['Fight', 'Run', 'Exit'],
+    })
+    .then((answer) => {
+      if (answer.action === 'Fight') {
+        console.log('You begin fighting the Wolf-Lord.');
+        fightCrux();
+      } else if (answer.action === 'Run') {
+        console.log('You attempt to run away.');
+        runCrux();
+      } else {
+        exitScreen();
+      }
+    });
+}
+
+function climbCave() {
+  console.log(
+    'You attempt to scale the jagged cave walls, looking for a less conspicuous entrance.'
+  );
+  const outcomes = ['Success', 'Failure'];
+  const randomOutcome = Math.floor(Math.random() * outcomes.length);
+
+  if (outcomes[randomOutcome] === 'Success') {
+    console.log('You find a hidden entrance to the cave.');
+    enterCave();
+  } else {
+    console.log(
+      'You fall but are not injured.  You are back at the base of the cave.'
+    );
+    travelCrux();
+  }
+}
+
+function runCrux() {
+  console.log(
+    'The Wolf-Lord has strange control over your mind.  You feel yourself succumbing to the curse of the werewolf.  You can no longer fight him.  You are now part of his army!'
+  );
+  killScreen();
+}
+
+function fightCrux() {
+  const outcomes = [
+    'Hit',
+    'Hit',
+    'Miss',
+    'Kill',
+    'Bitten',
+    'Hit',
+    'Hit',
+    'Hit',
+    'Hit',
+    'Miss',
+    'Miss',
+    'Miss',
+    'Miss',
+  ];
+
+  const randomOutcome = Math.floor(Math.random() * outcomes.length);
+
+  if (outcomes[randomOutcome] === 'Hit') {
+    console.log('You hit the Wolf-Lord.  He is wounded.');
+    hits++;
+    fightCrux();
+  } else {
+    if (outcomes[randomOutcome] === 'Miss') {
+      console.log('You missed.  The Wolf-Lord is unharmed.');
+      fightCrux();
+    } else {
+      if (outcomes[randomOutcome] === 'Bitten') {
+        global.localStorage.getItem(wolf);
+        console.log('The Wolf-Lord bit you.  You are now a werewolf!.');
+
+        if ((wolf = true)) {
+          console.log(
+            'You have a limited time before the ugres are beyond your control.  You must defeat the Wolf-Lord before the transformation is complete.  You must hurry!'
+          );
+          fightCrux();
+        } else {
+          global.localStorage.setItem('wolf', true);
+          console.log(
+            'You are now a werewolf!  You have a limited amount of time before the transformation is complete, you must kill him.'
+          );
+        }
+      } else {
+        deathBlow();
+      }
+    }
+  }
+}
+
+function deathBlow() {
+  var inventory = global.localStorage.getItem('inventory');
+  if (inventory.includes('Silver Sword')) {
+    console.log(
+      'The Wolf-Lord is weakening.  You deliver a final devasting blow and chop off his mangy head.  The village is safe.'
+    );
+    console.log(`
+                          |>      |>
+                |>        |~~~~~~~|        |>
+                |_    |^^^^^^^^^^^^^^^|    |_
+               (__)-----------------------(__)
+                | |   |      ()       |   | |
+                | |   |     |  |      |   | |
+      [^^^]     | -[^^^]    |__|     [^^^]- |     [^^^]
+      [ o ]--------[ o ]-------------[ o ]--------[ o ]
+      [   ]        [   ]      @      [   ]        [   ]
+      [   ]        [   ]    (   )    [   ]        [   ]
+      [   ]        [   ]   |     |   [   ]        [   ]
+      [   ]        [   ]   |     |   [   ]        [   ]
+______[___]________[___]___|_____|___[___]_____ __[___]__
+
+The Kingdom rejoices as the Foglands are saved!  You are a hero!
+
+  `);
+  } else {
+    console.log(
+      'After a brutal fight you were able to kill the Wolf-Lord, but the damage you sustained was too much.  You save the village, but you did not survive.  The village will remember you as a hero.  You are dead, but your memory will live on!'
+    );
+    killScreen();
+  }
+}
+
+function investigateWindmill() {
+  console.log(
+    'Inside the Windmill you see piles dead flesh and bones.  Teeth and claw marks cover the walls.  You hear a low growl.  You must fight the Werewolf.'
+  );
+
+  inquirer
+    .prompt({
+      name: 'action',
+      type: 'list',
+      message: 'What do you want to do?',
+      choices: ['Fight Him', 'Trap Him', 'Exit'],
+    })
+    .then((answer) => {
+      if (answer.action === 'Fight Him') {
+        console.log(
+          'You fight the Werewolf, but sadly he is too strong after consuming an entire village.  You are dead.  The village is surely doomed.'
+        );
+        killScreen();
+      } else if (answer.action === 'Trap Him') {
+        console.log(
+          'You trapped the werewolf.  This windmill holds only death and no secrets.  You leave the Windmill.'
+        );
+        rightExplore();
+      } else {
+        exitScreen();
+      }
+    });
 }
 
 function leftExplore() {
@@ -323,7 +505,64 @@ function towerExplore() {
     .then((answer) => {
       if (answer.action === 'Enter') {
         console.log('You enter the Tower.');
-        // enterTower();
+        enterTower();
+      } else {
+        if (answer.action === 'Leave') {
+          console.log('You leave the Tower.');
+          leftExplore();
+        } else {
+          exitScreen();
+        }
+      }
+    });
+}
+
+function enterTower() {
+  console.log(
+    'You enter the tower.  The air is thick with dust and the smell of decay.  The walls are lined with strange symbols and the floor is covered in blood.  You hear a low growl.  You must fight the Werewolf.'
+  );
+  towerFight();
+}
+
+function towerFight() {
+  const options = ['Hit', 'Hit', 'Miss', 'Kill', 'Bitten'];
+  const randomOption = Math.floor(Math.random() * options.length);
+
+  if (options[randomOption] === 'Hit') {
+    console.log('You hit the Werewolf.  He is wounded.');
+    hits++;
+    towerFight();
+  } else {
+    if (options[randomOption] === 'Miss') {
+      console.log('You missed.  The Werewolf is unharmed.');
+      towerFight();
+    } else {
+      if (options[randomOption] === 'Bitten') {
+        console.log('The Werewolf bit you.  You are now a werewolf!.');
+        global.localStorage.setItem('wolf', true);
+        towerFight();
+      } else {
+        console.log('You killed a Werewolf.');
+        continueTower();
+      }
+    }
+  }
+}
+
+function continueTower() {
+  console.log('You continue to explore the Tower.');
+  inquirer
+    .prompt({
+      name: 'action',
+      type: 'list',
+      message: 'You find a chest.  What do you want to do?',
+      choices: ['Open', 'Leave', 'Exit'],
+    })
+    .then((answer) => {
+      if (answer.action === 'Open') {
+        console.log('You open the chest.');
+        global.localStorage.setItem('inventory', ['Silver Sword']);
+        openChest();
       } else if (answer.action === 'Leave') {
         console.log('You leave the Tower.');
         leftExplore();
@@ -331,6 +570,13 @@ function towerExplore() {
         exitScreen();
       }
     });
+}
+
+function openChest() {
+  console.log(
+    'You open the chest and find a Silver Sword.  This tower holds no further secrets.  You leave the Tower.'
+  );
+  leftExplore();
 }
 
 function riverExplore() {
@@ -346,12 +592,13 @@ function riverExplore() {
       if (answer.action === 'Look for Clues') {
         console.log('You look for Clues.');
         lookForClues();
-      }
-      if (answer.action === 'Return to Clearing') {
-        console.log('You return to the Clearing.');
-        leftExplore();
       } else {
-        exitScreen();
+        if (answer.action === 'Return to Clearing') {
+          console.log('You return to the Clearing.');
+          leftExplore();
+        } else {
+          exitScreen();
+        }
       }
     });
 }

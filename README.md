@@ -69,9 +69,7 @@ code
 
 #### _Node.js_
 
-This is the link for the sword, sword in stone, and skull photos: [ascii.com](https://ascii.co.uk/art)
-
-This is the link for the werewolf: [emojicombos.com](https://emojicombos.com/)werewolf-text-art
+ASCII art: [ascii.com](https://ascii.co.uk/art)
 
 #### _HTML Page_
 
