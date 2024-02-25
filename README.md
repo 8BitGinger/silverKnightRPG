@@ -31,9 +31,23 @@
 
 ### _Installation Code_
 
+Open the Cloned Repo and enter the following command in the terminal:
+
 ```
-code
+npm i
 ```
+
+this will install the required dependencies!
+
+#### then
+
+type the following command:
+
+```
+npm run start
+```
+
+#### _Follow the prompts and enjoy the game!_
 
 ---
 
@@ -73,9 +87,9 @@ ASCII art: [ascii.com](https://ascii.co.uk/art)
 
 #### _HTML Page_
 
-This is the link for the sound effect: [pixabay](https://pixabay.com/)
+Sound Effect: [pixabay](https://pixabay.com/)
 
-This is the link for the 4 Action Box photos as well as knight and werewolf lord photos: [gencraft](https://gencraft.com/)
+Photos: [gencraft](https://gencraft.com/)
 
 ---
 
