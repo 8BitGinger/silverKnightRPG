@@ -1,5 +1,8 @@
 ![banner](./assets/images/silverKnight%20-%20main.png)
 
+<a id="badges"></a>
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Description
 
 ---
