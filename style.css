@@ -14,6 +14,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin: auto;
   align-items: center;
   padding: 20px;
 }
@@ -70,13 +71,14 @@ main {
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
+  justify-content: center;
 }
 
 .row {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
+  width: 100%;
   flex-direction: row;
 }
 
@@ -155,22 +157,15 @@ main {
   width: 100%;
 }
 
-/* .gradient-1 {
-  background: linear-gradient(
-    90deg,
-    #46095ad3 0%,
-    #46095acc 50%,
-    #140818c7 50%,
-    #140818d7 100%
-  );
-  padding: 20px;
-  border-radius: 20px;
-  width: fit-content;
-  display: flex;
+.stretch {
+  width: 100%;
   justify-content: center;
-  justify-self: center;
+  text-align: center;
   margin: auto;
-} */
+  display: flex;
+  align-content: center;
+  align-self: center;
+}
 
 .silverKnight {
   color: silver;

@@ -189,7 +189,7 @@ function campFire() {
 
 function helpWolf() {
   var agree = global.localStorage.getItem('agree');
-  console.log(agree);
+
   if ((agree = true)) {
     burnPieces();
   } else {
@@ -327,16 +327,20 @@ function fightCrux() {
     'Miss',
   ];
 
+  if (hits === 5) {
+    deathBlow();
+  }
+
   const randomOutcome = Math.floor(Math.random() * outcomes.length);
 
   if (outcomes[randomOutcome] === 'Hit') {
     console.log('You hit the Wolf-Lord.  He is wounded.');
     hits++;
-    fightCrux();
+    continueFightCrux();
   } else {
     if (outcomes[randomOutcome] === 'Miss') {
       console.log('You missed.  The Wolf-Lord is unharmed.');
-      fightCrux();
+      continueFightCrux();
     } else {
       if (outcomes[randomOutcome] === 'Bitten') {
         global.localStorage.getItem(wolf);
@@ -346,7 +350,7 @@ function fightCrux() {
           console.log(
             'You have a limited time before the ugres are beyond your control.  You must defeat the Wolf-Lord before the transformation is complete.  You must hurry!'
           );
-          fightCrux();
+          continueFightCrux();
         } else {
           global.localStorage.setItem('wolf', true);
           console.log(
@@ -360,9 +364,36 @@ function fightCrux() {
   }
 }
 
+function continueFightCrux() {
+  if (hits === 5) {
+    deathBlow();
+  }
+
+  inquirer
+    .prompt({
+      name: 'action',
+      type: 'list',
+      message: 'Do you want to continue the fight?',
+      choices: ['Keep Fighting', 'Run Away', 'Exit'],
+    })
+    .then((answer) => {
+      if (answer.action === 'Keep Fighting') {
+        console.log('You continue Fighting!');
+        fightCrux();
+      } else {
+        if (answer.action === 'Run Away') {
+          console.log('You attempt to run away.');
+          runCrux();
+        } else {
+          exitScreen();
+        }
+      }
+    });
+}
+
 function deathBlow() {
   var inventory = global.localStorage.getItem('inventory');
-  if (inventory.includes('Silver Sword')) {
+  if ((inventory = 'Silver Sword')) {
     console.log(
       'The Wolf-Lord is weakening.  You deliver a final devasting blow and chop off his mangy head.  The village is safe.'
     );
@@ -477,7 +508,7 @@ function windmillExplore() {
       name: 'action',
       type: 'list',
       message:
-        'You come to the Windmill.  The creaking wood and the blades slowing spin in the wind, the howling of the wind through the trees, and the smell of rotting flesh could be detected.  Something dark lurks here.  What do you want to do?',
+        'You come to the Windmill.  The creaking wood and the blades slowly spin in the wind, the howling of the wind through the trees, and the smell of rotting flesh could be detected.  Something dark lurks here.  What do you want to do?',
       choices: ['Investigate', 'Leave', 'Exit'],
     })
     .then((answer) => {
@@ -528,25 +559,56 @@ function towerFight() {
   const options = ['Hit', 'Hit', 'Miss', 'Kill', 'Bitten'];
   const randomOption = Math.floor(Math.random() * options.length);
 
+  if (hits === 5) {
+    deathBlow();
+  }
+
   if (options[randomOption] === 'Hit') {
     console.log('You hit the Werewolf.  He is wounded.');
     hits++;
-    towerFight();
+    continueTowerFight();
   } else {
     if (options[randomOption] === 'Miss') {
       console.log('You missed.  The Werewolf is unharmed.');
-      towerFight();
+      continueTowerFight();
     } else {
       if (options[randomOption] === 'Bitten') {
         console.log('The Werewolf bit you.  You are now a werewolf!.');
         global.localStorage.setItem('wolf', true);
-        towerFight();
+        continueTowerFight();
       } else {
         console.log('You killed a Werewolf.');
         continueTower();
       }
     }
   }
+}
+
+function continueTowerFight() {
+  if (hits === 5) {
+    deathBlow();
+  }
+
+  inquirer
+    .prompt({
+      name: 'action',
+      type: 'list',
+      message: 'Do you want to continue the fight?',
+      choices: ['Keep Fighting', 'Run Away', 'Exit'],
+    })
+    .then((answer) => {
+      if (answer.action === 'Keep Fighting') {
+        console.log('You continue Fighting!');
+        towerFight();
+      } else {
+        if (answer.action === 'Run Away') {
+          console.log('You attempt to run away.');
+          rightExplore();
+        } else {
+          exitScreen();
+        }
+      }
+    });
 }
 
 function continueTower() {
@@ -561,7 +623,7 @@ function continueTower() {
     .then((answer) => {
       if (answer.action === 'Open') {
         console.log('You open the chest.');
-        global.localStorage.setItem('inventory', ['Silver Sword']);
+        global.localStorage.setItem('inventory', 'Silver Sword');
         openChest();
       } else if (answer.action === 'Leave') {
         console.log('You leave the Tower.');
