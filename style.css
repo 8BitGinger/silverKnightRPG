@@ -14,9 +14,8 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: auto;
+  margin: 0;
   align-items: center;
-  padding: 20px;
 }
 
 .header {
@@ -25,7 +24,7 @@ main {
   text-align: center;
   padding: 10px;
   font-size: 20px;
-  width: 100%;
+  /* width: 100%; */
   height: fit-content;
   display: flex;
   flex-direction: row;
@@ -46,7 +45,7 @@ main {
   text-align: center;
   padding: 10px;
   font-size: 20px;
-  width: 100%;
+  /* width: 100%; */
   height: fit-content;
   display: flex;
   flex-direction: row;
@@ -111,6 +110,10 @@ main {
 .container-right a {
   color: gray;
   text-decoration: none;
+}
+
+.container-right p {
+  font-size: 25px;
 }
 
 .container-right a:hover {
@@ -181,6 +184,7 @@ main {
   font-family: 'Anta', sans-serif;
   font-weight: 400;
   font-style: normal;
+  font-size: 30px;
   padding: 10px;
   border-radius: 8px;
   border: 1px solid gray;
@@ -193,6 +197,8 @@ main {
 
 .video {
   border-radius: 12px;
+  width: 500px;
+  height: 350px;
 }
 
 .credit {
@@ -222,17 +228,19 @@ main {
 .photo-block {
   overflow: hidden;
   border-radius: 12px;
-  width: 22%;
+  max-width: 22%;
   height: 300px;
   text-align: center;
   position: relative;
-  margin: 5px;
+  margin: 20px 10px;
+  opacity: 0.8;
+  background-color: black;
 }
 
 .depict {
   height: 100%;
   width: auto;
-  opacity: 0.8;
+  border-radius: 12px;
 }
 
 .depict-text {
@@ -248,18 +256,25 @@ main {
   color: yellow;
 }
 
-.photo-block:hover .depict-text {
-  background-color: rgba(0, 0, 0, 0.538);
-  color: yellow;
-  cursor: pointer;
+.photo-block:hover {
+  /* scale: 1.1; */
+  opacity: 1;
+  cursor: crosshair;
+}
+
+.depict-text:hover {
+  background-color: rgba(0, 0, 0, 0.74);
+  cursor: text;
   scale: 1.1;
+  /* border: 1px solid rgba(255, 255, 0, 0.754); */
 }
 
 .blackBack {
   background-color: rgba(0, 0, 0, 0.702);
   padding: 15px;
   border-radius: 8px;
-  width: 80vw;
+  width: 100%;
+  margin: 10px 25px;
 }
 
 @media screen and (max-width: 600px) {
@@ -294,8 +309,17 @@ main {
   }
 
   .photo-block {
-    width: 45%;
+    max-width: 40%;
     height: 200px;
+    margin: 10px;
+  }
+
+  .avatar {
+    max-width: 37%;
+  }
+
+  .container-top p {
+    font-size: 25px;
   }
 
   .depict-text {
@@ -304,5 +328,14 @@ main {
 
   .full {
     font-size: 20px;
+  }
+
+  .code {
+    font-size: 25px;
+  }
+
+  .video {
+    width: 300px;
+    height: 200px;
   }
 }

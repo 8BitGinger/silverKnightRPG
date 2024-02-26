@@ -32,7 +32,7 @@ function playGame() {
       name: 'action',
       type: 'list',
       message:
-        'You are on the hunt for a particularly menacing Werewolf, when you are attacked from behind.  Luckily his claws missed.  What would you like to do?',
+        'You are on the hunt for Crux Moonscar the Wolf-Lord, when you are attacked from behind.  Luckily his claws missed.  What would you like to do?',
       choices: ['Fight', 'Run', 'Exit'],
     })
     .then((answer) => {
@@ -42,7 +42,9 @@ function playGame() {
         fight();
       } else if (answer.action === 'Run') {
         console.log(`▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓`);
-        console.log('The Werewolf is too fast for you.  You are dead.');
+        console.log(
+          'The Werewolf is too fast for you.  You die a cowards death.'
+        );
         killScreen();
       } else {
         exitScreen();
@@ -693,6 +695,8 @@ function lookForClues() {
           'You inspect the Symbol.  It appears to be a symbol of the Wolf-Lord.  The symbol is painted in blood.  The symbol is a circle with a cross in the middle.  The cross has 5 lines.  The symbol is a warning.  Smoke from a fire can be seen in the distance.  I must head there!'
         );
         campFire();
+      } else {
+        exitScreen();
       }
     });
 }
