@@ -13,6 +13,7 @@
 1. [Installation](#install)
 1. [Technologies](#tech)
 1. [Links](#links)
+1. [License](#license)
 1. [Contributing](#contribute)
 1. [Contact](#contact)
 
@@ -23,8 +24,19 @@
 ## Screenshots
 
 ![screenshot-intro](./assets/images/silverKnight%20-%20logoScreen.png)
+
+![gif](./assets/images/silverKnight%20-%20demo.gif)
+
+<details closed>
+
+<summary>Click Here for More!</summary>
+
+<br>
+
 ![screenshot-intro](./assets/images/silverKnight%20-%20exitScreen.png)
 ![screenshot-intro](./assets/images/silverKnight%20-%20killScreen.png)
+
+</details>
 
 ---
 
@@ -58,11 +70,22 @@ npm run start
 
 ## Technologies and Dependencies
 
+### Tech
+
 | Tech              | Purpose    |
 | ----------------- | ---------- |
 | Node.js           | JS Runtime |
 | Inquirer          | Prompts    |
 | node-localstorage | Storage    |
+
+### Dependencies
+
+```
+  "dependencies": {
+    "inquirer": "^9.2.15",
+    "node-localstorage": "^3.0.5"
+  }
+```
 
 ---
 
@@ -77,6 +100,14 @@ npm run start
 [Landing Page](https://8bitginger.github.io/silverKnightRPG/)
 
 [Portfolio Link](https://ryanfann.netlify.app/)
+
+---
+
+<div id="license"></div>
+
+## License
+
+### [MIT](https://opensource.org/licenses/MIT)
 
 ---
 
