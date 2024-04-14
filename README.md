@@ -1,9 +1,13 @@
-![banner](./assets/images/silverKnight%20-%20main.png)
-
 <a id="badges"></a>
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+# Silver Knight Text Based RPG
+
+![banner](./assets/images/silverKnightProject.jpg)
+
 ## Description
+
+Welcome, brave adventurer! Don the mantle of a Silver Knight, a legendary warrior sworn to protect the realm. A shroud of mist has descended upon the Foglands, twisted by the dark magic of the Wolf-Lord Crux Moonscar and his werewolf hordes. In this immersive text-based RPG built with Node.js and Inquirer, you'll navigate perilous landscapes, face challenging choices, and engage in combat to liberate the Foglands from Crux Moonscar's tyranny. Are you ready to become the hero of legend?
 
 ---
 
@@ -14,7 +18,7 @@
 1. [Technologies](#tech)
 1. [Links](#links)
 1. [License](#license)
-1. [Contributing](#contribute)
+1. [Credits](#credit)
 1. [Contact](#contact)
 
 ---
@@ -33,7 +37,16 @@
 
 <br>
 
+#### Landing Page
+
+![screenshot-intro](./assets/images/silverKnight%20-%20main.png)
+
+#### Exit Screen
+
 ![screenshot-intro](./assets/images/silverKnight%20-%20exitScreen.png)
+
+#### Kill Screen
+
 ![screenshot-intro](./assets/images/silverKnight%20-%20killScreen.png)
 
 </details>
@@ -72,11 +85,11 @@ npm run start
 
 ### Tech
 
-| Tech              | Purpose    |
-| ----------------- | ---------- |
-| Node.js           | JS Runtime |
-| Inquirer          | Prompts    |
-| node-localstorage | Storage    |
+| Tech              | Purpose           |
+| ----------------- | ----------------- |
+| Node.js           | JS Runtime        |
+| Inquirer          | Prompts           |
+| node-localstorage | Inventory Storage |
 
 ### Dependencies
 
@@ -107,11 +120,13 @@ npm run start
 
 ## License
 
-### [MIT](https://opensource.org/licenses/MIT)
+#### MIT
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ---
 
-<div id="contribute"></div>
+<div id="credit"></div>
 
 ## Contributing
 
